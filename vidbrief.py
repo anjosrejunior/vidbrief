@@ -3,7 +3,6 @@ from handlers.download_audio_h import run_download_audio
 from handlers.transcribe_audio_h import run_transcribe_audio
 from handlers.resume_transcription_h import run_resume_transcription
 
-
 def display_banner():
     """Exibe o nome do projeto em ASCII Art estilizado."""
     os.system('cls' if os.name == 'nt' else 'clear')

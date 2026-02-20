@@ -31,7 +31,7 @@ if __name__ == "__main__":
     video_url_env = os.environ.get("VIDEO_URL")
     if not video_url_env:
         raise ValueError(
-            "Configuration error: VIDEO_URL not found. "
-            "Please check if the environment variable is set in Kestra or your .env file."
+            "[VidBrief] Configuration error: VIDEO_URL not found. "
+            "[VidBrief] Please check if the environment variable is set in Kestra or your .env file."
         )
     run_download_audio(video_url_env)

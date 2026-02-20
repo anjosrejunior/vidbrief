@@ -1,11 +1,10 @@
 import os
 from pathlib import Path
 from core.resume_transcription import call_agent
+from core.fallbacks import resolve_api_key
 
 def run_resume_transcription():
-    openai_api_key = os.environ.get("OPENAI_API_KEY")
-    if not openai_api_key:
-        raise ValueError("Authentication error: OPENAI_API_KEY not found.")
+    openai_api_key = resolve_api_key()
     
     transcription_env = os.environ.get("TRANSCRIPTION")
     if transcription_env:

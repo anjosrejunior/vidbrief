@@ -1,37 +1,8 @@
-import os
-from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
 from pydantic import SecretStr
 from core.transcribe_audio import transcribe_audio
-
-def resolve_audio_path():
-    if path := os.environ.get("AUDIO_PATH"):
-        audio = Path(path)
-        if audio.exists():
-            return audio
-
-    cwd_path = Path.cwd() / "audio_temp.m4a"
-    if cwd_path.exists():
-        return cwd_path
-
-    script_path = Path(__file__).parent.parent / "audio_temp.m4a"
-    if script_path.exists():
-        return script_path
-        
-    raise FileNotFoundError("audio_temp.m4a not found in any known location")
-    
-def resolve_api_key():
-    environ_api_key = os.environ.get("OPENAI_API_KEY")
-    if environ_api_key: 
-        return environ_api_key
-        
-    load_dotenv()
-    env_api_key = os.getenv("OPENAI_API_KEY")
-    if env_api_key:
-        return env_api_key
-    
-    raise ValueError("[VidBrief] Error: OPENAI_API_KEY not found.")
+from core.fallbacks import resolve_api_key, resolve_audio_path
 
 def run_transcribe_audio():
     api_key = resolve_api_key()

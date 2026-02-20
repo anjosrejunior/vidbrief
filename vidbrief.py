@@ -26,11 +26,11 @@ def main_menu():
         print(" [0] Exit")
         print("\n" + "_"*40)
         
-        choice = input("\nSelect an option: ").strip()
+        choice = input("\n[VidBrief] Select an option: ").strip()
 
         if choice == '1':
             print("\n" + "="*40)
-            url = input("Enter YouTube URL: ")
+            url = input("[VidBrief] Enter YouTube URL: ")
             
             # Aqui você chamará suas funções de processamento:
             print(f"\n[VidBrief] Initializing process for: {url}")
@@ -40,13 +40,13 @@ def main_menu():
             run_transcribe_audio()
             run_resume_transcription()
             
-            input("\nProcess finished. Press Enter to return to menu...")
+            input("\n[VidBrief] Process finished. Press Enter to return to menu...")
             
         elif choice == '0':
-            print("\nExiting VidBrief... See you soon!")
+            print("\n[VidBrief] Exiting VidBrief... See you soon!")
             break
         else:
-            input("\nInvalid option! Press Enter to try again...")
+            input("\n[VidBrief] Invalid option! Press Enter to try again...")
 
 if __name__ == "__main__":
     main_menu()

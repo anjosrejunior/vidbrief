@@ -5,27 +5,22 @@ from core.download_audio import download_audio
 
 def run_download_audio(video_url):
     print("---------------------------------")
-    print("📂 CWD:", Path.cwd())
-    print("🎯 Video URL:", video_url)
-    print("✅ Downloading audio...")
+    print("[VidBrief] ✅ Downloading audio...")
 
     try:
         file = download_audio(video_url)
         output = Path(file)
-        print("📦 File exists:", output.exists())
+        print("[VidBrief] 📦 File exists:", output.exists())
         if output.exists():
-            print("📦 File size:", output.stat().st_size)
+            print("[VidBrief] 📦 File size:", output.stat().st_size)
     except Exception as e:
-        print("❌ Critical error during audio download")
-        print(f"👉 Details: {e}")
-        print("📂 CWD at failure:", Path.cwd())
+        print("[VidBrief] ❌ Critical error during audio download")
+        print(f"[VidBrief] 👉 Details: {e}")
+        print("[VidBrief] CWD at failure:", Path.cwd())
         raise
     else:
         print("---------------------------------")
-        print("📂 Files in CWD after download:")
-        for f in Path.cwd().iterdir():
-            print(" -", f.name)
-        print(f"✅ Audio saved to: {file}")
+        print(f"[VidBrief] ✅ Audio saved to: {file}")
 
     return file
      

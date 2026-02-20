@@ -20,36 +20,45 @@ def resolve_audio_path():
         return script_path
         
     raise FileNotFoundError("audio_temp.m4a not found in any known location")
+    
+def resolve_api_key():
+    environ_api_key = os.environ.get("OPENAI_API_KEY")
+    if environ_api_key: 
+        return environ_api_key
+        
+    load_dotenv()
+    env_api_key = os.getenv("OPENAI_API_KEY")
+    if env_api_key:
+        return env_api_key
+    
+    raise ValueError("[VidBrief] Error: OPENAI_API_KEY not found.")
 
 def run_transcribe_audio():
-    raw_api_key = os.environ.get("OPENAI_API_KEY")
-    if not raw_api_key: 
-        raise ValueError("Authentication error: OPENAI_API_KEY not found.")
-    
-    str_openai_api_key = SecretStr(raw_api_key)
-    client = OpenAI(api_key=str_openai_api_key.get_secret_value())
+    api_key = resolve_api_key()
+    openai_api_key = SecretStr(api_key)
+    client = OpenAI(api_key=openai_api_key.get_secret_value())
     
     print("---------------------------------")
-    print("✅ Transcribing audio...")
+    print("[VidBrief] ✅ Transcribing audio...")
     try:
         temp_transcription = transcribe_audio(resolve_audio_path(), client)
     except FileNotFoundError as f:
-        print("❌ Critical error: audio file doesn't exist.")
-        print(f"👉 Details: {f}")
+        print("[VidBrief] ❌ Critical error: audio file doesn't exist.")
+        print(f"[VidBrief] 👉 Details: {f}")
         raise
     except Exception as e:
-        print("❌ Error during transcription")
-        print(f"👉 Details: {e}")
+        print("[VidBrief] ❌ Error during transcription")
+        print(f"[VidBrief] 👉 Details: {e}")
         raise
     else:
         print("---------------------------------")
-        print("✅ Transcription completed successfully")
+        print("[VidBrief] ✅ Transcription completed successfully")
     
     with open("transcription.txt", "w", encoding="utf-8") as f:
         f.write(temp_transcription)
     
     print("---------------------------------")
-    print("✅ Transcription file generated")
+    print("[VidBrief] ✅ Transcription file generated")
     
     return temp_transcription
     
@@ -57,8 +66,5 @@ if __name__ == "__main__":
     from dotenv import load_dotenv
     load_dotenv()
     audio_path = resolve_audio_path()
-    
-    print("📁 Audio path:", audio_path)
-    print("📏 File size:", audio_path.stat().st_size)
     
     run_transcribe_audio()

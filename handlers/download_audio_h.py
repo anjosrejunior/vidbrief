@@ -5,16 +5,23 @@ from core.download_audio import download_audio
 
 def run_download_audio(video_url):
     print("---------------------------------")
-    print("✅ Downloading audio...")
+    print("[VidBrief] ✅ Downloading audio...")
+
     try:
         file = download_audio(video_url)
+        output = Path(file)
+        print("[VidBrief] 📦 File exists:", output.exists())
+        if output.exists():
+            print("[VidBrief] 📦 File size:", output.stat().st_size)
     except Exception as e:
-        print("❌ Critical error during audio download")
-        print(f"👉 Details: {e}")
+        print("[VidBrief] ❌ Critical error during audio download")
+        print(f"[VidBrief] 👉 Details: {e}")
+        print("[VidBrief] CWD at failure:", Path.cwd())
         raise
     else:
         print("---------------------------------")
-        print(f"✅ Audio saved to: {file}")
+        print(f"[VidBrief] ✅ Audio saved to: {file}")
+
     return file
      
 if __name__ == "__main__":
@@ -24,7 +31,7 @@ if __name__ == "__main__":
     video_url_env = os.environ.get("VIDEO_URL")
     if not video_url_env:
         raise ValueError(
-            "Configuration error: VIDEO_URL not found. "
-            "Please check if the environment variable is set in Kestra or your .env file."
+            "[VidBrief] Configuration error: VIDEO_URL not found. "
+            "[VidBrief] Please check if the environment variable is set in Kestra or your .env file."
         )
     run_download_audio(video_url_env)

@@ -3,8 +3,11 @@ from typing import Any
 
 def download_audio(url):    
     ydl_opts: dict[str, Any] = {
-        'format': 'm4a/bestaudio/best',
-        'outtmpl': 'audio_temp.m4a',
+        "format": "m4a/bestaudio/best",
+        "outtmpl": "audio_temp.m4a",
+        "js_runtimes": {
+            "node": {}
+        }
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl: # type: ignore[arg-type]
         ydl.download([url])

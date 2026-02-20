@@ -33,9 +33,9 @@ def run_transcribe_audio():
     print("✅ Transcribing audio...")
     try:
         temp_transcription = transcribe_audio(resolve_audio_path(), client)
-    except FileNotFoundError:
+    except FileNotFoundError as f:
         print("❌ Critical error: audio file doesn't exist.")
-        print(f"👉 Audio path: {resolve_audio_path()}")
+        print(f"👉 Details: {f}")
         raise
     except Exception as e:
         print("❌ Error during transcription")

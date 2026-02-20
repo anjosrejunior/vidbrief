@@ -42,7 +42,7 @@ sudo apt update
 sudo apt install nodejs
 ```
 
-4. Istall ffmpeg
+4. Install ffmpeg
 ```bash
 sudo apt-get update && apt-get install -y ffmpeg
 ```

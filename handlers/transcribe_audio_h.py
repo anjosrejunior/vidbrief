@@ -56,5 +56,9 @@ def run_transcribe_audio():
 if __name__ == "__main__":
     from dotenv import load_dotenv
     load_dotenv()
+    audio_path = resolve_audio_path()
+    
+    print("📁 Audio path:", audio_path)
+    print("📏 File size:", audio_path.stat().st_size)
     
     run_transcribe_audio()

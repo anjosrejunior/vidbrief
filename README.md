@@ -26,21 +26,26 @@
 ### Installation
 
 1. Clone the repository:
-  ```bash
-  git clone https://github.com/your-username/vidbrief.git
-  ``
+```bash
+git clone https://github.com/your-username/vidbrief.git
+```
 
 2. Enter the project folder and install dependencies:
-    ```bash
-    cd vidbrief
-    pip install -r requirements.txt
-    ``` 
+```bash
+cd vidbrief
+pip install -r requirements.txt
+``` 
    
 3. Install Node.js
-  ```bash
-  sudo apt update
-  sudo apt install nodejs
-  ```
+```bash
+sudo apt update
+sudo apt install nodejs
+```
+
+4. Istall ffmpeg
+```bash
+sudo apt-get update && apt-get install -y ffmpeg
+```
 
 ## ⚙️ Configuration
 Create a .env file at the root of the project and add your credentials. Just follow the .env_example file.
@@ -56,6 +61,7 @@ The prompt used by the project is located inside the prompts folder, where you c
 - Python: Main programming language.
 - yt-dlp: An excellent Python library for video extraction.
 - Node.js: Required for yt-dlp to function correctly.
+- ffmpeg: Required for yt-dlp to function correctly.
 - OpenAI: Library used to call the Whisper model for audio transcription.
 - LangChain: Used to call the AI model responsible for generating summaries.
 

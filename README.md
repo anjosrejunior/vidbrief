@@ -2,7 +2,8 @@
 
 **Turn hours of video into minutes of reading.**
 
-**VidBrief** is a Python command-line tool (CLI) that automates intelligence extraction from videos. It accurately transcribes audio and uses Artificial Intelligence to generate concise summaries, allowing you to absorb the essential content without watching the entire video.
+![Project Demonstration](/banner.png)
+> **VidBrief** is a Python command-line tool (CLI) that automates intelligence extraction from videos. It accurately transcribes audio and uses Artificial Intelligence to generate concise summaries, allowing you to absorb the essential content without watching the entire video.
 
 ## 🔧 Features
 

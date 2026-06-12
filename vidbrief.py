@@ -47,6 +47,11 @@ def main_menu():
             
         elif choice == "2":
             print("\n" + "=" * 40)
+            url = input("[VidBrief] Enter YouTube URL: ")
+            print(f"\n[VidBrief] Initializing process for: {url}")
+            print("[VidBrief] Please wait... Download Audio")
+            run_download_audio(url)
+
             print("\n[VidBrief] Please wait... Transcribing audio...")
             run_transcribe_audio()
             print("\n[VidBrief] ✅ Audio Transcribed")
@@ -63,7 +68,7 @@ def main_menu():
             
         elif choice == "4":
             print("\n" + "=" * 40)
-
+            url = input("[VidBrief] Enter YouTube URL: ")
             print(f"\n[VidBrief] Initializing process for: {url}")
             print("[VidBrief] Please wait... Downloading Audio")
             run_download_audio(url)
